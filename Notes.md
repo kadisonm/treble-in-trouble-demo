@@ -3,7 +3,7 @@
 
 # TO-DO
 ## DEMO
-- [] Set up pixel art camera
+- [x] Set up pixel art camera
 - [] Create basic play screen and game scene
 - [] Create staff and note sprites
 - [] Create note spawning system from Mid C to C 2 octaves above
