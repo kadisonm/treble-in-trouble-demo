@@ -24,7 +24,7 @@ public class Staff : MonoBehaviour
     }
 
     public void SpawnNote(int note) {
-        if (lines[note] == null) {
+        if (lines.Count < note) {
             return;
         }
 
