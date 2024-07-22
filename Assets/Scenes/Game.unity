@@ -1323,11 +1323,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NoteObject: {fileID: 6485540851875764128, guid: 0a5000f081524b0439aaa6dc964daf9a, type: 3}
-  Normal: {fileID: 529827343619999245, guid: d00ab3eb0e6201742afb0b7811e5b50a, type: 3}
-  NormalLedger: {fileID: -3074652432995152293, guid: d00ab3eb0e6201742afb0b7811e5b50a, type: 3}
-  Flipped: {fileID: 2576814749323497236, guid: d00ab3eb0e6201742afb0b7811e5b50a, type: 3}
-  FlippedLedger: {fileID: -3512418765586842751, guid: d00ab3eb0e6201742afb0b7811e5b50a, type: 3}
-  FlippedDoubleLedger: {fileID: -7448176466970862816, guid: d00ab3eb0e6201742afb0b7811e5b50a, type: 3}
+  Normal: {fileID: 4282362592933639439, guid: d00ab3eb0e6201742afb0b7811e5b50a, type: 3}
+  NormalLedger: {fileID: -1014495854838856264, guid: d00ab3eb0e6201742afb0b7811e5b50a, type: 3}
+  Flipped: {fileID: -4428673799103181392, guid: d00ab3eb0e6201742afb0b7811e5b50a, type: 3}
+  FlippedLedger: {fileID: 8991615760493730064, guid: d00ab3eb0e6201742afb0b7811e5b50a, type: 3}
+  FlippedAboveLedger: {fileID: 7119329702552738127, guid: d00ab3eb0e6201742afb0b7811e5b50a, type: 3}
+  FlippedDoubleLedger: {fileID: -8493324786284632159, guid: d00ab3eb0e6201742afb0b7811e5b50a, type: 3}
 --- !u!1 &2081503928
 GameObject:
   m_ObjectHideFlags: 0
@@ -1452,9 +1453,9 @@ Camera:
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
-    y: 0
+    y: 0.09701493
     width: 1
-    height: 1
+    height: 0.80597013
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 34
