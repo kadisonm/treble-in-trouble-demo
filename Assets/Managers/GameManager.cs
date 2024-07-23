@@ -39,7 +39,7 @@ public class GameManager : MonoBehaviour
                 break;
             }
             
-            staff.SpawnNote(num);
+            staff.SpawnRandomNote();
             num++;
             yield return new WaitForSeconds(.5f);
         }
