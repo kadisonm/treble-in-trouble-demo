@@ -54,8 +54,7 @@ public class Staff : MonoBehaviour
 
         SpriteRenderer renderer = newNote.GetComponent<SpriteRenderer>();
         renderer.sprite = sprite;
- 
-        Debug.Log(renderer.sprite);
+
     }
 
     public void SpawnRandomNote() {

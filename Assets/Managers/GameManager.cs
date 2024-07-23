@@ -35,13 +35,8 @@ public class GameManager : MonoBehaviour
     {
         while (true)
         {
-            if (num >= 16) {
-                break;
-            }
-            
             staff.SpawnRandomNote();
-            num++;
-            yield return new WaitForSeconds(.5f);
+            yield return new WaitForSeconds(2);
         }
     }
 }

@@ -16,10 +16,10 @@ public class Destroyer : MonoBehaviour
         
     }
 
-    void OnCollision2DEnter(Collider2D col) 
+    void OnTriggerEnter2D(Collider2D col) 
     {
-        if (col.gameObject.tag == "Enemy") {
-            
+        if (col.gameObject.tag == "Note") {
+            Destroy(col.gameObject);
         }
     }
 }
