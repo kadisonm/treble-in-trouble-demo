@@ -6,8 +6,6 @@ public class GameManager : MonoBehaviour
 {
     private static GameManager _instance;
 
-    private int num = 1;
-
     public static GameManager Instance
     {
         get
