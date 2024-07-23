@@ -56,7 +56,7 @@ public class GameManager : MonoBehaviour
         {
             staff.GetComponent<Staff>().SpawnRandomNote();
             yield return new WaitForSeconds(2);
-            CloseStaff();
+            
         }
     }
 }

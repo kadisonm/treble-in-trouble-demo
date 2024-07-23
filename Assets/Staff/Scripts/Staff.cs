@@ -39,7 +39,7 @@ public class Staff : MonoBehaviour
             return;
         }
 
-        GameObject noteObject = Instantiate(NotePrefab, lines[note], Quaternion.identity);
+        GameObject noteObject = Instantiate(NotePrefab, lines[note], Quaternion.identity, transform);
 
         Note newNote = new();
         newNote.gameObject = noteObject;
