@@ -16,7 +16,7 @@ public class Destroyer : MonoBehaviour
         
     }
 
-    void OnCollisionEnter2D(Collider2D col) 
+    void OnCollision2DEnter(Collider2D col) 
     {
         if (col.gameObject.tag == "Enemy") {
             
