@@ -1,6 +1,7 @@
 using UnityEngine;
 
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -17,24 +18,45 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public Staff staff;
+    public EventBus<IEvent> EventBus { get; set; }
+
+    [SerializeField] private GameObject staffPrefab;
+    private GameObject staff;
 
     private void Awake() 
     { 
+        _instance = this; 
+        EventBus = new EventBus<IEvent>();
+    }
 
+    void OpenStaff() {
+        Transform ui = Camera.main.transform.GetChild(0);
+        staff = Instantiate(staffPrefab, ui);
+    }
+
+    void CloseStaff() {
+        Destroy(staff);
+        staff = null;
     }
 
     void Start() 
     {
-        StartCoroutine(SpawnNotes());
+        Scene currentScene = SceneManager.GetActiveScene();
+
+		if (currentScene.name == "InfiniteDemo") {
+            OpenStaff();
+            StartCoroutine(SpawnInfiniteNotes());
+        }
+ 
     }
 
-    IEnumerator SpawnNotes() 
+    IEnumerator SpawnInfiniteNotes() 
     {
         while (true)
         {
-            staff.SpawnRandomNote();
+            staff.GetComponent<Staff>().SpawnRandomNote();
             yield return new WaitForSeconds(2);
+            CloseStaff();
         }
     }
 }

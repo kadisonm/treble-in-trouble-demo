@@ -2,30 +2,32 @@ using System.Collections.Generic;
 using System.Collections;
 using UnityEngine;
 
-public class Note {
+class Note {
     public GameObject gameObject;
     public int line;
 }
 
 public class Staff : MonoBehaviour
 {
-    public GameObject NoteObject;
+    [SerializeField] private GameObject NotePrefab;
 
-    public Sprite Normal;
-    public Sprite NormalLedger;
-    public Sprite Flipped;
-    public Sprite FlippedLedger;
-    public Sprite FlippedAboveLedger;
-    public Sprite FlippedDoubleLedger;
-    public Sprite Correct;
-    public Sprite Wrong;
+    [SerializeField] private GameObject LinesObject;
+
+    [SerializeField] private Sprite Normal;
+    [SerializeField] private Sprite NormalLedger;
+    [SerializeField] private Sprite Flipped;
+    [SerializeField] private Sprite FlippedLedger;
+    [SerializeField] private Sprite FlippedAboveLedger;
+    [SerializeField] private Sprite FlippedDoubleLedger;
+    [SerializeField] private Sprite Correct;
+    [SerializeField] private Sprite Wrong;
 
     private readonly List<Vector3> lines = new();
     private readonly List<Note> notes = new();
 
-    void Start()
+    void Awake()
     {
-        Transform[] transforms = gameObject.GetComponentsInChildren<Transform>();
+        Transform[] transforms = LinesObject.GetComponentsInChildren<Transform>();
 
         foreach (Transform transform in transforms) {
             lines.Add(transform.position);
@@ -37,7 +39,7 @@ public class Staff : MonoBehaviour
             return;
         }
 
-        GameObject noteObject = Instantiate(NoteObject, lines[note], Quaternion.identity);
+        GameObject noteObject = Instantiate(NotePrefab, lines[note], Quaternion.identity);
 
         Note newNote = new();
         newNote.gameObject = noteObject;
@@ -103,15 +105,6 @@ public class Staff : MonoBehaviour
         SpawnNote(random);
     }
 
-    void OnTriggerEnter2D(Collider2D col) 
-    {
-        if (col.gameObject.tag == "Note") {
-            if (col.gameObject == notes[0].gameObject) {
-                StartCoroutine(WrongNote());
-            }
-        }
-    }
-
     public void KeyPressed(string type)
     {
         if (notes.Count == 0) {
@@ -132,6 +125,15 @@ public class Staff : MonoBehaviour
             StartCoroutine(CorrectNote());
         } else {
             StartCoroutine(WrongNote());
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D col) 
+    {
+        if (col.gameObject.tag == "Note") {
+            if (col.gameObject == notes[0].gameObject) {
+                StartCoroutine(WrongNote());
+            }
         }
     }
 }
