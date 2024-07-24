@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class PlayerJump : MonoBehaviour
 {
-    
     [SerializeField] private float jumpPower;
     
     [SerializeField] private float freefallMultiplier;
@@ -12,8 +11,6 @@ public class PlayerJump : MonoBehaviour
     private PlayerGrounded playerGrounded;
     private Animator animator;
 
-    private bool previousState;
-
     private void OnEnable()
     {
         body = GetComponent<Rigidbody2D>();
@@ -21,15 +18,7 @@ public class PlayerJump : MonoBehaviour
         animator = GetComponentInChildren<Animator>();
     }
 
-    private void ChangeFallAnimation(bool state)
-    {
-        if (previousState != state)
-        {
-            previousState = state;
-        }
-    }
-
-    private void Update()
+    private void FixedUpdate()
     {
         bool isGrounded = playerGrounded.IsGrounded();
 
@@ -37,9 +26,7 @@ public class PlayerJump : MonoBehaviour
 
         if (Input.GetButton("Jump") && isGrounded)
         {
-            animator.SetTrigger("Jump");
             velocity.y = jumpPower;
-
             body.velocity = velocity;
         }
 
@@ -53,15 +40,11 @@ public class PlayerJump : MonoBehaviour
 
         if (isGrounded)
         {
-            animator.SetBool("Grounded", true);
-            ChangeFallAnimation(false);
+            animator.SetBool("Jump", false);
         }
         else
         {
-            animator.SetBool("Grounded", false);
-            ChangeFallAnimation(true);
+            animator.SetBool("Jump", true);
         }
     }
-
-    
 }
