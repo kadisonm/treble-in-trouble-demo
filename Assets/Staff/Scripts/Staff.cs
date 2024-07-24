@@ -34,7 +34,7 @@ public class Staff : MonoBehaviour
         }
     }
 
-    public void SpawnNote(int note) {
+    public void CreateNote(int note) {
         if (lines.Count < note) {
             return;
         }
@@ -73,18 +73,16 @@ public class Staff : MonoBehaviour
         notes.Add(newNote);
     }
 
-    IEnumerator WrongNote() {
-        Debug.Log("Wrong");
-        Note note = notes[0];
+    public void CreateRandomNote() {
+        int random = Random.Range(1, 16);
+        CreateNote(random);
+    }
 
-        SpriteRenderer sprite = note.gameObject.GetComponent<SpriteRenderer>();
-        sprite.sprite = Wrong;
-
-        notes.RemoveAt(0);
-
-        yield return new WaitForSeconds(1);
-
-        Destroy(note.gameObject);
+    IEnumerator SpawnNotes(int amount, float duration) {
+        while (notes.Count < amount) {
+            CreateRandomNote();
+            yield return new WaitForSeconds(duration);
+        }
     }
 
     IEnumerator CorrectNote() {
@@ -95,14 +93,26 @@ public class Staff : MonoBehaviour
 
         notes.RemoveAt(0);
 
+        GameManager.Instance.EventBus.Publish<NotePressedEvent>(new NotePressedEvent { Value = true });
+
         yield return new WaitForSeconds(1);
 
         Destroy(note.gameObject);
     }
 
-    public void SpawnRandomNote() {
-        int random = Random.Range(1, 16);
-        SpawnNote(random);
+    IEnumerator WrongNote() {
+        Note note = notes[0];
+
+        SpriteRenderer sprite = note.gameObject.GetComponent<SpriteRenderer>();
+        sprite.sprite = Wrong;
+
+        notes.RemoveAt(0);
+
+         GameManager.Instance.EventBus.Publish<NotePressedEvent>(new NotePressedEvent { Value = false });
+
+        yield return new WaitForSeconds(1);
+        
+        Destroy(note.gameObject);
     }
 
     public void KeyPressed(string type)
