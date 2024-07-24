@@ -46,6 +46,9 @@ public class GameManager : MonoBehaviour
 		if (currentScene.name == "InfiniteDemo") {
             OpenStaff();
             StartCoroutine(SpawnInfiniteNotes());
+        } else if (currentScene.name == "Demo") {
+            OpenStaff();
+            StartCoroutine(SpawnInfiniteNotes());
         }
  
     }
@@ -56,7 +59,6 @@ public class GameManager : MonoBehaviour
         {
             staff.GetComponent<Staff>().SpawnRandomNote();
             yield return new WaitForSeconds(2);
-            
         }
     }
 }
