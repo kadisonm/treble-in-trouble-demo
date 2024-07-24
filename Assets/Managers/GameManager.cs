@@ -27,6 +27,11 @@ public class GameManager : MonoBehaviour
     { 
         _instance = this; 
         EventBus = new EventBus<IEvent>();
+        SceneManager.activeSceneChanged += NewScene;
+    }
+
+    private void OnDestroy() {
+        SceneManager.activeSceneChanged -= NewScene;
     }
 
     void OpenStaff() {
@@ -39,14 +44,12 @@ public class GameManager : MonoBehaviour
         staff = null;
     }
 
-    void Start() 
+    void NewScene(Scene current, Scene next) 
     {
-        Scene currentScene = SceneManager.GetActiveScene();
-
-		if (currentScene.name == "InfiniteDemo") {
+		if (next.name == "InfiniteDemo") {
             OpenStaff();
             StartCoroutine(SpawnInfiniteNotes());
-        } else if (currentScene.name == "Demo") {
+        } else if (next.name == "Demo") {
             OpenStaff();
             StartCoroutine(SpawnInfiniteNotes());
         }
