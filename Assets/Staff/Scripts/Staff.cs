@@ -79,7 +79,10 @@ public class Staff : MonoBehaviour
     }
 
     public IEnumerator SpawnNotes(int amount, float duration) {
-        while (notes.Count < amount) {
+        int notesSpawned = 0;
+
+        while (notesSpawned < amount) {
+            notesSpawned++;
             CreateRandomNote();
             yield return new WaitForSeconds(duration);
         }

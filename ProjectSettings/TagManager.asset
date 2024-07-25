@@ -14,7 +14,7 @@ TagManager:
   - UI
   - Player
   - Ground
-  - 
+  - Enemy
   - 
   - 
   - 
@@ -41,6 +41,9 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Notes
+    uniqueID: 2952103861
     locked: 0
   - name: UI
     uniqueID: 573783365

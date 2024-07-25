@@ -5,7 +5,7 @@ public class PlayerCamera : MonoBehaviour
     public float smoothTime = 0.3F;
     private Vector3 velocity = Vector3.zero;
 
-    void FixedUpdate()
+    void LateUpdate()
     {
         Vector3 cameraPosition = Camera.main.transform.position;
         

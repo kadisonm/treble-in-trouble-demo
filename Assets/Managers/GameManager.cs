@@ -34,34 +34,37 @@ public class GameManager : MonoBehaviour
         SceneManager.activeSceneChanged -= NewScene;
     }
 
-    void OpenStaff() {
-        Transform ui = Camera.main.transform.GetChild(0);
-        staff = Instantiate(staffPrefab, ui);
-    }
-
-    void CloseStaff() {
-        Destroy(staff);
-        staff = null;
-    }
-
-    void NewScene(Scene current, Scene next) 
+    private void NewScene(Scene current, Scene next) 
     {
 		if (next.name == "InfiniteDemo") {
             OpenStaff();
             StartCoroutine(SpawnInfiniteNotes());
         } else if (next.name == "Demo") {
-            OpenStaff();
-            StartCoroutine(SpawnInfiniteNotes());
+            
         }
- 
+    }
+
+    public void OpenStaff() {
+        Transform ui = Camera.main.transform.GetChild(0);
+        staff = Instantiate(staffPrefab, ui);
+    }
+
+    public void CloseStaff() {
+        Destroy(staff);
+        staff = null;
     }
 
     public void SpawnAttackNotes() {
-        StartCoroutine(staff.GetComponent<Staff>().SpawnNotes(4, 2));
+        if (staff != null) {
+            StartCoroutine(staff.GetComponent<Staff>().SpawnNotes(4, 2));
+        }
     }
 
-    IEnumerator SpawnInfiniteNotes() 
+    public IEnumerator SpawnInfiniteNotes() 
     {
+        if (staff == null)
+            yield break;
+
         while (true)
         {
             staff.GetComponent<Staff>().CreateRandomNote();
