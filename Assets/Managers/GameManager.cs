@@ -56,6 +56,10 @@ public class GameManager : MonoBehaviour
  
     }
 
+    public void SpawnAttackNotes() {
+        StartCoroutine(staff.GetComponent<Staff>().SpawnNotes(4, 2));
+    }
+
     IEnumerator SpawnInfiniteNotes() 
     {
         while (true)

@@ -303,7 +303,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -7, y: 33.6}
+  m_Offset: {x: -83.15, y: 33.6}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -637,7 +637,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: -75.1, y: 83.913345}
+  m_AnchoredPosition: {x: -64.9, y: 11.4}
   m_SizeDelta: {x: 155.304, y: 37.75}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4639989205335354219
@@ -1135,7 +1135,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 99.50003, y: -16.086342}
+  m_AnchoredPosition: {x: 23.50003, y: -15.799339}
   m_SizeDelta: {x: 170.923, y: 50.854}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8177204421827579819
@@ -1931,7 +1931,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 6.7, y: 33.913}
+  m_AnchoredPosition: {x: -69.3, y: 34.2}
   m_SizeDelta: {x: 1.706, y: 44.844}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1316989269871278079

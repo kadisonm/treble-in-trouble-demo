@@ -22,7 +22,7 @@ public class Staff : MonoBehaviour
     [SerializeField] private Sprite Correct;
     [SerializeField] private Sprite Wrong;
 
-    private readonly List<Vector3> lines = new();
+    private readonly List<Transform> lines = new();
     private readonly List<Note> notes = new();
 
     void Awake()
@@ -30,7 +30,7 @@ public class Staff : MonoBehaviour
         Transform[] transforms = LinesObject.GetComponentsInChildren<Transform>();
 
         foreach (Transform transform in transforms) {
-            lines.Add(transform.position);
+            lines.Add(transform);
         }
     }
 
@@ -39,7 +39,7 @@ public class Staff : MonoBehaviour
             return;
         }
 
-        GameObject noteObject = Instantiate(NotePrefab, lines[note], Quaternion.identity, transform);
+        GameObject noteObject = Instantiate(NotePrefab, lines[note].position, Quaternion.identity, LinesObject.transform);
 
         Note newNote = new();
         newNote.gameObject = noteObject;
@@ -78,7 +78,7 @@ public class Staff : MonoBehaviour
         CreateNote(random);
     }
 
-    IEnumerator SpawnNotes(int amount, float duration) {
+    public IEnumerator SpawnNotes(int amount, float duration) {
         while (notes.Count < amount) {
             CreateRandomNote();
             yield return new WaitForSeconds(duration);
