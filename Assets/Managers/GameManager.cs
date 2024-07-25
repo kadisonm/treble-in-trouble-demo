@@ -60,7 +60,7 @@ public class GameManager : MonoBehaviour
     {
         while (true)
         {
-            staff.GetComponent<Staff>().SpawnRandomNote();
+            staff.GetComponent<Staff>().CreateRandomNote();
             yield return new WaitForSeconds(2);
         }
     }

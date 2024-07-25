@@ -24,7 +24,7 @@ public class Play : MonoBehaviour
             yield return new WaitForSeconds(Time.deltaTime);
         }
 
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(2);
     }
 
     public void OnPlay()
