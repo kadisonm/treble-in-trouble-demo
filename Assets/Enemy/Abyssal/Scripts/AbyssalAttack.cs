@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class AbyssalAttack : MonoBehaviour
 {
-    [SerializeField] private int damage = 1;
+    [SerializeField] private Vector3 orbOffset;
+    [SerializeField] private GameObject orb;
 
     private bool inFight = false;
     private bool touching = false;
@@ -12,7 +13,7 @@ public class AbyssalAttack : MonoBehaviour
     private IEnumerator Fight() {
         while (true) {
             yield return new WaitForSeconds(2);
-            // attack
+            Instantiate(orb, transform.position + orbOffset, Quaternion.identity, transform);
         }
     }
 
@@ -23,6 +24,7 @@ public class AbyssalAttack : MonoBehaviour
         touching = true;
 
         if (inFight == false) {
+            inFight = true;
             GameManager.Instance.EventBus.Publish<EnemyTriggered>(new EnemyTriggered { Value = GetComponent<Enemy>() });
             StartCoroutine(Fight());
             GetComponent<AbyssalWalk>().enabled = false;

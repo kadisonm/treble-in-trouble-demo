@@ -1,12 +1,18 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerAttack : MonoBehaviour
 {
     private bool inFight = false;
+    private Enemy enemy = null;
 
     private int correct = 0;
     private int wrong = 0;
+
+    private List<GameObject> smallNotes = new();
+
+    [SerializeField] private GameObject note;
 
     private Animator animator;
 
@@ -15,11 +21,13 @@ public class PlayerAttack : MonoBehaviour
 
         GameManager.Instance.EventBus.Subscribe<EnemyTriggered>(EnemyTriggered);
         GameManager.Instance.EventBus.Subscribe<NotePressedEvent>(NotePressed);
+        GameManager.Instance.EventBus.Subscribe<EnemyDead>(EnemyDied);
     }
 
     private void OnDisable() {
        GameManager.Instance.EventBus.Unsubscribe<EnemyTriggered>(EnemyTriggered); 
        GameManager.Instance.EventBus.Unsubscribe<NotePressedEvent>(NotePressed); 
+       GameManager.Instance.EventBus.Unsubscribe<EnemyDead>(EnemyDied);
     }
 
     private void EnemyTriggered(EnemyTriggered eventData) {
@@ -27,17 +35,15 @@ public class PlayerAttack : MonoBehaviour
             return;
         
         inFight = true;
+        enemy = eventData.Value;
 
         animator.SetBool("Fighting", true);
-
-        correct = 0;
-        wrong = 0;
 
         GetComponent<PlayerMovement>().enabled = false;
         GetComponent<PlayerJump>().enabled = false;
 
         GameManager.Instance.OpenStaff();
-        GameManager.Instance.SpawnAttackNotes();
+        StartCoroutine(GameManager.Instance.SpawnAttackNotes());
     }
 
     private void NotePressed(NotePressedEvent eventData) {
@@ -47,6 +53,9 @@ public class PlayerAttack : MonoBehaviour
 
         if (right == true) {
             correct++;
+            GameObject smallNote = Instantiate(note, transform.position, Quaternion.identity, transform);
+            smallNotes.Add(smallNote);
+            smallNote.GetComponent<AttackNote>().MoveTo(transform, enemy);
         }
         
         if (right == false) {
@@ -54,18 +63,31 @@ public class PlayerAttack : MonoBehaviour
         }
 
         if (correct + wrong == 4) {
-            // Attack ended
-            StartCoroutine(CloseStaff());
-
+            StartCoroutine(GameManager.Instance.SpawnAttackNotes());
         }
     }
 
-    private IEnumerator CloseStaff() {
-        yield return new WaitForSeconds(1);
-        GameManager.Instance.CloseStaff();
+    private void EnemyDied(EnemyDead eventdata) {
+        StartCoroutine(CloseStaff());
     }
 
-    private void AttackEnded() {
+    private IEnumerator CloseStaff() {
+        
+        yield return new WaitForSeconds(1);
+        GameManager.Instance.CloseStaff();
 
+        foreach (GameObject smallNote in smallNotes) {
+            Destroy(smallNote);
+        }
+
+        enemy = null;
+        inFight = false;
+        correct = 0;
+        wrong = 0;
+
+        animator.SetBool("Fighting", false);
+
+        GetComponent<PlayerMovement>().enabled = true;
+        GetComponent<PlayerJump>().enabled = true;
     }
 }

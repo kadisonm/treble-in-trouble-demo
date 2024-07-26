@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_Scenes/InfiniteDemo.unity
     guid: b7cc78c87062bb74b937b3ea934a2411
+  - enabled: 1
+    path: Assets/_Scenes/Died.unity
+    guid: 1a41a51146076684ba9f77c09e617156
   m_configObjects: {}

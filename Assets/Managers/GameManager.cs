@@ -54,9 +54,21 @@ public class GameManager : MonoBehaviour
         staff = null;
     }
 
-    public void SpawnAttackNotes() {
-        if (staff != null) {
-            StartCoroutine(staff.GetComponent<Staff>().SpawnNotes(4, 2));
+    public IEnumerator SpawnAttackNotes() {
+        if (staff == null) {
+            yield break;
+        }
+
+        int notesSpawned = 0;
+
+        while (notesSpawned < 4) {
+            if (staff == null) {
+                yield break;
+            }
+
+            notesSpawned++;
+            staff.GetComponent<Staff>().CreateRandomNote();
+            yield return new WaitForSeconds(2);
         }
     }
 
