@@ -1,14 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class PlayerAttack : MonoBehaviour
 {
+    [SerializeField] private TextMeshProUGUI textObject;
+
     private bool inFight = false;
     private Enemy enemy = null;
 
     private int correct = 0;
     private int wrong = 0;
+
+    private int kills = 0;
 
     private List<GameObject> smallNotes = new();
 
@@ -69,6 +74,10 @@ public class PlayerAttack : MonoBehaviour
 
     private void EnemyDied(EnemyDead eventdata) {
         StartCoroutine(CloseStaff());
+
+        GameManager.Instance.totalKills++;
+        kills++;
+        textObject.text = "Kills: " + kills;
     }
 
     private IEnumerator CloseStaff() {
