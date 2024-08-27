@@ -1,4 +1,4 @@
-# Treble In Trouble Demo
+# Treble In Trouble Demo v1.0
 A musical sight reading game made for a school assignment.
 
 Try it yourself [here](https://kadisonm.itch.io/treble-in-trouble-demo)
