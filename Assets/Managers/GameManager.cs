@@ -11,7 +11,8 @@ public class GameManager
             return _instance.Value;
         }
     }
-    
+
+    public float health = 0;
 
     public string SomeMethod()
     {

@@ -3,9 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class LoadMenu : MonoBehaviour
+public class Managers : MonoBehaviour
 {
-    private void Awake() {
-        SceneManager.LoadScene("Menu");
-    }
+    public GameManager gameManager = GameManager.Instance;
 }
