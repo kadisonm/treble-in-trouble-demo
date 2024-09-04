@@ -34,7 +34,13 @@ public class GameManager : MonoBehaviour
         float delay = 0f;
 
         if (current.name == "01_Menu") {
-            delay = 6;
+            delay = 11;
+
+            StartCoroutine(Scene1Dialogue());
+        }
+
+        if (current.name == "02_Outskirts") {
+            StartCoroutine(Scene2Dialogue());
         }
 
         if (transition)
@@ -55,19 +61,20 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private IEnumerator Scene0Dialogue()
+    private IEnumerator Scene1Dialogue()
     {
-        DialogueManager.Instance.CreateSpeech("Dad", "Caden! Caden! You must wake up now!", 3);
+        DialogueManager.Instance.CreateNarration("Treble, once a city where melodies danced through the air, now echoes with the discord of monsters", 5);
+        yield return new WaitForSecondsRealtime(5);
+        DialogueManager.Instance.CreateNarration("You find yourself alone on the outskirts of town.", 3);
         yield return new WaitForSecondsRealtime(3);
-        DialogueManager.Instance.CreateSpeech("Dad", "Now, Caden!", 3);
+        DialogueManager.Instance.CreateNarration("Only you can sound the tunes of treble once more.", 3);
         yield return new WaitForSecondsRealtime(6);
         ChangeScene("02_Treble_Square");
     }
 
-    private void Start()
+    private IEnumerator Scene2Dialogue()
     {
-        if (SceneManager.GetActiveScene().buildIndex == 0) {
-            StartCoroutine(Scene0Dialogue());
-        }
+        yield return new WaitForSecondsRealtime(6);
+        DialogueManager.Instance.CreateSpeech("Enemy", "~**Gbbuuurllllllllleee**~", 3);
     }
 }

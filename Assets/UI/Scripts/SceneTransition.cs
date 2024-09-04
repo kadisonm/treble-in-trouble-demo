@@ -21,8 +21,6 @@ public class SceneTransition : MonoBehaviour
             float alpha = t / duration;
             group.alpha = Mathf.Lerp(1, 0, alpha);
 
-            print(t);
-
             yield return new WaitForSecondsRealtime(Time.deltaTime);
         }
 
@@ -41,8 +39,6 @@ public class SceneTransition : MonoBehaviour
 
         while (group.alpha < 1 && t <= duration) {
             t += Time.deltaTime;
-
-            print(t);
 
             float alpha = t / duration;
             group.alpha = Mathf.Lerp(0, 1, alpha);
