@@ -5,14 +5,14 @@ public class Enemy : MonoBehaviour
     [SerializeField] private int health = 3;
 
     private void OnEnable() {
-        GameManager.Instance.EventBus.Subscribe<EnemyHit>(Hit);
+        EventManager.Instance.EventBus.Subscribe<Events.EnemyHit>(Hit);
     }
 
     private void OnDisable() {
-        GameManager.Instance.EventBus.Unsubscribe<EnemyHit>(Hit);
+        EventManager.Instance.EventBus.Unsubscribe<Events.EnemyHit>(Hit);
     }
 
-    private void Hit(EnemyHit info) {
+    private void Hit(Events.EnemyHit info) {
         if (info.Value == this) {
             Damage();
         }
@@ -28,7 +28,7 @@ public class Enemy : MonoBehaviour
     }
 
     private void Died() {
-        GameManager.Instance.EventBus.Publish<EnemyDead>(new EnemyDead {Value = this});
+        EventManager.Instance.EventBus.Publish<Events.EnemyDead>(new Events.EnemyDead {Value = this});
         Destroy(gameObject);
     }
 }

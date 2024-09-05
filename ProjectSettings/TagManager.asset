@@ -7,6 +7,8 @@ TagManager:
   - Note
   - Projectile
   - Canvas
+  - PlayerSpawn
+  - EnemySpawn
   layers:
   - Default
   - TransparentFX

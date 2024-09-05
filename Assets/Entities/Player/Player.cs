@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using TMPro;
 
 public class Player : MonoBehaviour
@@ -20,6 +19,8 @@ public class Player : MonoBehaviour
     {
         health--;
         textObject.text = "Health: " + health;
+
+        EventManager.Instance.EventBus.Publish<Events.PlayerHurt>(new Events.PlayerHurt { Value = health });
 
         if (health <= 0) {
             Died();

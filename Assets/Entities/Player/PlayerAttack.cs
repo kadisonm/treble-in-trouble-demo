@@ -20,18 +20,18 @@ public class PlayerAttack : MonoBehaviour
     private void OnEnable() {
         animator = GetComponentInChildren<Animator>();
 
-        GameManager.Instance.EventBus.Subscribe<EnemyTriggered>(EnemyTriggered);
-        GameManager.Instance.EventBus.Subscribe<NotePressedEvent>(NotePressed);
-        GameManager.Instance.EventBus.Subscribe<EnemyDead>(EnemyDied);
+        EventManager.Instance.EventBus.Subscribe<Events.EnemyTriggered>(EnemyTriggered);
+        EventManager.Instance.EventBus.Subscribe<Events.NotePressed>(NotePressed);
+        EventManager.Instance.EventBus.Subscribe<Events.EnemyDead>(EnemyDied);
     }
 
     private void OnDisable() {
-        GameManager.Instance.EventBus.Unsubscribe<EnemyTriggered>(EnemyTriggered); 
-        GameManager.Instance.EventBus.Unsubscribe<NotePressedEvent>(NotePressed); 
-        GameManager.Instance.EventBus.Unsubscribe<EnemyDead>(EnemyDied);
+        EventManager.Instance.EventBus.Unsubscribe<Events.EnemyTriggered>(EnemyTriggered); 
+        EventManager.Instance.EventBus.Unsubscribe<Events.NotePressed>(NotePressed); 
+        EventManager.Instance.EventBus.Unsubscribe<Events.EnemyDead>(EnemyDied);
     }
 
-    private void EnemyTriggered(EnemyTriggered eventData) {
+    private void EnemyTriggered(Events.EnemyTriggered eventData) {
         if (inFight == true) 
             return;
         
@@ -47,7 +47,7 @@ public class PlayerAttack : MonoBehaviour
         //StartCoroutine(GameManager.Instance.SpawnAttackNotes());
     }
 
-    private void NotePressed(NotePressedEvent eventData) {
+    private void NotePressed(Events.NotePressed eventData) {
         animator.SetTrigger("Attack");
 
         bool right = eventData.Value;
@@ -66,7 +66,7 @@ public class PlayerAttack : MonoBehaviour
         }
     }
 
-    private void EnemyDied(EnemyDead eventdata) {
+    private void EnemyDied(Events.EnemyDead eventdata) {
         StartCoroutine(CloseStaff());
 
         GameManager.Instance.totalKills++;

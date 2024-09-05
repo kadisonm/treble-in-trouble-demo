@@ -25,6 +25,7 @@ public class GameManager : MonoBehaviour
 
     private GameObject staff;
     [SerializeField] private GameObject staffPrefab;
+    [SerializeField] private GameObject enemyPrefab;
 
     public void ChangeScene(string name)
     {
@@ -100,13 +101,25 @@ public class GameManager : MonoBehaviour
         }
 
         if (current.name == "02_Outskirts") {
-            StartCoroutine(Scene2Dialogue());
+            //StartCoroutine(Scene2Dialogue());
+            StartWave();
         }
 
         if (transition)
         {
             StartCoroutine(transition.FadeIn(1.5f, delay));
         }
+    }
+
+    private void StartWave() {
+        GameObject spawn = GameObject.FindWithTag("EnemySpawn");
+        Vector3 spawnPosition = Vector3.zero;
+
+        if (spawn) {
+            spawnPosition = spawn.transform.position;
+        }
+
+        GameObject enemy = Instantiate(enemyPrefab, spawnPosition, Quaternion.identity);
     }
 
     private IEnumerator Scene1Dialogue()
@@ -131,6 +144,7 @@ public class GameManager : MonoBehaviour
 
         inTutorial = true;
         OpenStaff();
+        PlayerManager.Instance.ToggleMovement(false);
 
         Staff staffController = staff.GetComponent<Staff>();
         
@@ -171,6 +185,8 @@ public class GameManager : MonoBehaviour
 
         inTutorial = false;
         CloseStaff();
+
+        PlayerManager.Instance.ToggleMovement(true);
 
         yield return new WaitForSecondsRealtime(5);
 

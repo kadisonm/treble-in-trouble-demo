@@ -105,7 +105,7 @@ public class Staff : MonoBehaviour
 
         notes.RemoveAt(0);
 
-        GameManager.Instance.EventBus.Publish<NotePressedEvent>(new NotePressedEvent { Value = true });
+        EventManager.Instance.EventBus.Publish<Events.NotePressed>(new Events.NotePressed { Value = true });
 
         yield return new WaitForSeconds(1);
 
@@ -120,7 +120,7 @@ public class Staff : MonoBehaviour
 
         notes.RemoveAt(0);
 
-        GameManager.Instance.EventBus.Publish<NotePressedEvent>(new NotePressedEvent { Value = false });
+        EventManager.Instance.EventBus.Publish<Events.NotePressed>(new Events.NotePressed { Value = false });
 
         yield return new WaitForSeconds(1);
         
@@ -153,8 +153,10 @@ public class Staff : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D col) 
     {
         if (col.gameObject.tag == "Note") {
-            if (col.gameObject == notes[0].gameObject) {
-                StartCoroutine(WrongNote());
+            if (notes.Count > 0) {
+                if (col.gameObject == notes[0].gameObject) {
+                    StartCoroutine(WrongNote());
+                }    
             }
         }
     }
