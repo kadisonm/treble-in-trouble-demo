@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Note
   - Projectile
+  - Canvas
   layers:
   - Default
   - TransparentFX

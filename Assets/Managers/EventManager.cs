@@ -7,17 +7,17 @@ public class NotePressedEvent : IEvent
 
 // Enemies
 
-// public class EnemyTriggered : IEvent 
-// {
-//     public Enemy Value { get; set; }
-// }
+public class EnemyTriggered : IEvent 
+{
+    public Enemy Value { get; set; }
+}
 
-// public class EnemyHit : IEvent 
-// {
-//     public Enemy Value { get; set; }
-// }
+public class EnemyHit : IEvent 
+{
+    public Enemy Value { get; set; }
+}
 
-// public class EnemyDead : IEvent 
-// {
-//     public Enemy Value { get; set; }
-// }
+public class EnemyDead : IEvent 
+{
+    public Enemy Value { get; set; }
+}

@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 9010361725958251617}
   - component: {fileID: 7349134406589378054}
-  - component: {fileID: 8671270725412858304}
   - component: {fileID: 8779136501606010608}
   - component: {fileID: -2752033863297530038}
+  - component: {fileID: 1245321926439049822}
   m_Layer: 5
   m_Name: Note
   m_TagString: Note
@@ -20,14 +20,13 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &9010361725958251617
-Transform:
+--- !u!224 &9010361725958251617
+RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6485540851875764128}
-  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 15, y: 15, z: 15}
@@ -35,6 +34,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0.4375, y: 1.46875}
+  m_Pivot: {x: 0.48712677, y: 0.11405215}
 --- !u!212 &7349134406589378054
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -74,7 +78,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 573783365
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 30
   m_Sprite: {fileID: 4282362592933639439, guid: d00ab3eb0e6201742afb0b7811e5b50a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -87,19 +91,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &8671270725412858304
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6485540851875764128}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 27d6d76d5d1764c428c90491c1f1099b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 2
 --- !u!61 &8779136501606010608
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -172,3 +163,16 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &1245321926439049822
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6485540851875764128}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27d6d76d5d1764c428c90491c1f1099b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 2

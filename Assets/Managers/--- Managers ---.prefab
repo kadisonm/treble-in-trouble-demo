@@ -44,9 +44,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75961175c1a819f4fb84472c6ac485e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NarrationBox: {fileID: 0}
-  SpeechBox: {fileID: 0}
-  canvas: {fileID: 0}
+  NarrationBox: {fileID: 7372882337874897931, guid: c240ab7b59ff30f41a808d1187d0bd72, type: 3}
+  HalfNarrationBox: {fileID: 7372882337874897931, guid: d12177d1453028d42b579d4fdf1d4ec1, type: 3}
+  SpeechBox: {fileID: 4719589625650583538, guid: 78d4d8869a740d9428a1604fa220a03c, type: 3}
 --- !u!1 &7031473538456419535
 GameObject:
   m_ObjectHideFlags: 0
@@ -137,4 +137,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 717050bf499067a49a7c89519fcf1ad8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scene: 
+  staffPrefab: {fileID: 756385348500648084, guid: 995ab26c28ae9484193831f52705ce1b, type: 3}

@@ -15,24 +15,20 @@ public class PlayerAttack : MonoBehaviour
 
     private int kills = 0;
 
-    private List<GameObject> smallNotes = new();
-
-    [SerializeField] private GameObject note;
-
     private Animator animator;
 
     private void OnEnable() {
         animator = GetComponentInChildren<Animator>();
 
-        // GameManager.Instance.EventBus.Subscribe<EnemyTriggered>(EnemyTriggered);
-        // GameManager.Instance.EventBus.Subscribe<NotePressedEvent>(NotePressed);
-        // GameManager.Instance.EventBus.Subscribe<EnemyDead>(EnemyDied);
+        GameManager.Instance.EventBus.Subscribe<EnemyTriggered>(EnemyTriggered);
+        GameManager.Instance.EventBus.Subscribe<NotePressedEvent>(NotePressed);
+        GameManager.Instance.EventBus.Subscribe<EnemyDead>(EnemyDied);
     }
 
     private void OnDisable() {
-    //    GameManager.Instance.EventBus.Unsubscribe<EnemyTriggered>(EnemyTriggered); 
-    //    GameManager.Instance.EventBus.Unsubscribe<NotePressedEvent>(NotePressed); 
-    //    GameManager.Instance.EventBus.Unsubscribe<EnemyDead>(EnemyDied);
+        GameManager.Instance.EventBus.Unsubscribe<EnemyTriggered>(EnemyTriggered); 
+        GameManager.Instance.EventBus.Unsubscribe<NotePressedEvent>(NotePressed); 
+        GameManager.Instance.EventBus.Unsubscribe<EnemyDead>(EnemyDied);
     }
 
     private void EnemyTriggered(EnemyTriggered eventData) {
@@ -47,8 +43,8 @@ public class PlayerAttack : MonoBehaviour
         GetComponent<PlayerMovement>().enabled = false;
         GetComponent<PlayerJump>().enabled = false;
 
-        GameManager.Instance.OpenStaff();
-        StartCoroutine(GameManager.Instance.SpawnAttackNotes());
+        //GameManager.Instance.OpenStaff();
+        //StartCoroutine(GameManager.Instance.SpawnAttackNotes());
     }
 
     private void NotePressed(NotePressedEvent eventData) {
@@ -58,17 +54,15 @@ public class PlayerAttack : MonoBehaviour
 
         if (right == true) {
             correct++;
-            GameObject smallNote = Instantiate(note, transform.position, Quaternion.identity, transform);
-            smallNotes.Add(smallNote);
-            smallNote.GetComponent<AttackNote>().MoveTo(transform, enemy);
+           
         }
         
         if (right == false) {
             wrong++;
-        }
 
-        if (correct + wrong == 4) {
-            StartCoroutine(GameManager.Instance.SpawnAttackNotes());
+            if (GameManager.Instance.inTutorial == false) {
+                GetComponent<Player>().Damage();
+            }
         }
     }
 
@@ -84,10 +78,6 @@ public class PlayerAttack : MonoBehaviour
         
         yield return new WaitForSeconds(1);
         GameManager.Instance.CloseStaff();
-
-        foreach (GameObject smallNote in smallNotes) {
-            Destroy(smallNote);
-        }
 
         enemy = null;
         inFight = false;

@@ -18,9 +18,8 @@ public class DialogueManager : MonoBehaviour
     }
 
     public GameObject NarrationBox;
+    public GameObject HalfNarrationBox;
     public GameObject SpeechBox;
-
-    [SerializeField] private Transform canvas;
 
     private void Awake() 
     { 
@@ -29,17 +28,38 @@ public class DialogueManager : MonoBehaviour
 
     public void CreateNarration(string text, int duration = 2)
     {
-        GameObject box = Instantiate(NarrationBox, canvas);
-        NarrationBox narration = box.GetComponent<NarrationBox>();
-        narration.SetText(text);
-        Destroy(box, duration);
+        GameObject canvas = GameObject.FindWithTag("Canvas");
+
+        if (canvas) {
+            GameObject box = Instantiate(NarrationBox, canvas.transform);
+            NarrationBox narration = box.GetComponent<NarrationBox>();
+            narration.SetText(text);
+            Destroy(box, duration);    
+        }
+    }
+
+    public void CreateHalfNarration(string text, int duration = 2)
+    {
+        GameObject canvas = GameObject.FindWithTag("Canvas");
+
+        if (canvas) {
+            GameObject box = Instantiate(HalfNarrationBox, canvas.transform);
+            NarrationBox narration = box.GetComponent<NarrationBox>();
+            narration.SetText(text);
+            Destroy(box, duration);    
+        }
+        
     }
 
     public void CreateSpeech(string name, string text, int duration = 2)
     {
-        GameObject box = Instantiate(SpeechBox, canvas);
-        SpeechBox speech = box.GetComponent<SpeechBox>();
-        speech.SetText(name, text);
-        Destroy(box, duration);
+        GameObject canvas = GameObject.FindWithTag("Canvas");
+
+        if (canvas) {
+            GameObject box = Instantiate(SpeechBox, canvas.transform);
+            SpeechBox speech = box.GetComponent<SpeechBox>();
+            speech.SetText(name, text);
+            Destroy(box, duration);
+        }
     }
 }
