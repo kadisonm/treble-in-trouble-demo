@@ -36,7 +36,7 @@ public class Staff : MonoBehaviour
 
     private void OnDisable()
     {
-        lines = null;
+        lines = new();
     }
 
     public void CreateNote(int note) {

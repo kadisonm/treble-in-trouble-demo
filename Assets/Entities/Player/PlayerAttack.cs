@@ -32,18 +32,23 @@ public class PlayerAttack : MonoBehaviour
         animator.SetBool("Fighting", true);
 
         GameManager.Instance.OpenStaff();
+        GameManager.Instance.SpawnAttackNotes();
 
         PlayerManager.Instance.Fighting = true;
-
-        GameManager.Instance.SpawnAttackNotes();
     }
 
     private void NotePressed(Events.NotePressed eventData) {
-        animator.SetTrigger("Attack");
-
         bool right = eventData.Value;
-        
-        if (right == false) {
+
+        if (right) {
+            if (enemy) {
+                print("attack");
+                animator.SetTrigger("Attack");
+                enemy.GetComponent<Enemy>().Damage();
+            }
+        }
+        else 
+        {
             if (GameManager.Instance.inTutorial == false) {
                 PlayerManager.Instance.Damage();
             }

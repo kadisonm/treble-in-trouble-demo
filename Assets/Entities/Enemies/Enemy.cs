@@ -7,7 +7,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] private float speed = 1;
 
     private Rigidbody2D body;
-     private Animator animator;
+    private Animator animator;
 
     private bool canMove = true;
 
@@ -53,6 +53,7 @@ public class Enemy : MonoBehaviour
         health--;
 
         animator.SetTrigger("Hit");
+        print("hit");
 
         if (health <= 0) {
             Died();
