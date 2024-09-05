@@ -54,9 +54,11 @@ public class GameManager : MonoBehaviour
         PlayerManager.Instance.ToggleMovement(true);
     }
 
-    public IEnumerator SpawnInfiniteNotes() {
-        Staff staffController = staff.GetComponent<Staff>();
-        StartCoroutine(staffController.SpawnInfiniteNotes(1.5f, minNote, maxNote);
+    public void SpawnAttackNotes() {
+        if (PlayerManager.Instance.Fighting == false) {
+            Staff staffController = staff.GetComponent<Staff>();
+            StartCoroutine(staffController.SpawnInfiniteNotes(1.5f, minNote, maxNote));    
+        }
     }
 
     private void Awake() 

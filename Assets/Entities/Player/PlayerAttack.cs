@@ -35,7 +35,7 @@ public class PlayerAttack : MonoBehaviour
 
         PlayerManager.Instance.Fighting = true;
 
-        GameManager.Instance.SpawnInfiniteNotes();
+        GameManager.Instance.SpawnAttackNotes();
     }
 
     private void NotePressed(Events.NotePressed eventData) {
@@ -51,6 +51,8 @@ public class PlayerAttack : MonoBehaviour
     }
 
     private void EnemyDied(Events.EnemyDead eventdata) {
+        PlayerManager.Instance.Fighting = false;
+
         StartCoroutine(CloseStaff());
     }
 
