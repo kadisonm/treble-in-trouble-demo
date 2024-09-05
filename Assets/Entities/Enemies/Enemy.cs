@@ -44,6 +44,7 @@ public class Enemy : MonoBehaviour
     {   
         if (data.Value == false) 
         {
+            print("Wrong");
             animator.SetTrigger("Attack");
         }
     }

@@ -106,12 +106,12 @@ public class GameManager : MonoBehaviour
     {
         DialogueManager.Instance.CreateNarration("You find yourself alone on the outskirts of the once city Treble.", 4);
         yield return new WaitForSecondsRealtime(4);
-        DialogueManager.Instance.CreateNarration("It was once a city where melodies danced through the air", 4);
-        yield return new WaitForSecondsRealtime(4);
-        DialogueManager.Instance.CreateNarration("but now it echoes with the discord of monsters.", 4);
-        yield return new WaitForSecondsRealtime(4);
-        DialogueManager.Instance.CreateNarration("Only you can sound the tunes of treble once more.", 4);
-        yield return new WaitForSecondsRealtime(7);
+        // DialogueManager.Instance.CreateNarration("It was once a city where melodies danced through the air", 4);
+        // yield return new WaitForSecondsRealtime(4);
+        // DialogueManager.Instance.CreateNarration("but now it echoes with the discord of monsters.", 4);
+        // yield return new WaitForSecondsRealtime(4);
+        // DialogueManager.Instance.CreateNarration("Only you can sound the tunes of treble once more.", 4);
+        // yield return new WaitForSecondsRealtime(7);
         ChangeScene("02_Outskirts");
     }
 
