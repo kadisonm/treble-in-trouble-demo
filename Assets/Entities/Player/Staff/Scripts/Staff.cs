@@ -87,6 +87,14 @@ public class Staff : MonoBehaviour
         CreateNote(random);
     }
 
+    public IEnumerator SpawnInfiniteNotes(int amount, int min, int max, float interval) {
+        while (true) 
+        {
+            CreateRandomNote(min, max);
+            yield return new WaitForSeconds(interval);
+        }
+    }
+
     public IEnumerator SpawnNotes(int amount, int min, int max, float interval) {
         int notesSpawned = 0;
 

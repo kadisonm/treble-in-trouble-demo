@@ -1,24 +1,15 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
 
 public class PlayerAttack : MonoBehaviour
 {
-    [SerializeField] private TextMeshProUGUI textObject;
-
     private bool inFight = false;
     private Enemy enemy = null;
-
-    private int correct = 0;
-    private int wrong = 0;
-
-    private int kills = 0;
 
     private Animator animator;
 
     private void OnEnable() {
-        animator = GetComponentInChildren<Animator>();
+        animator = GetComponent<Animator>();
 
         EventManager.Instance.EventBus.Subscribe<Events.EnemyTriggered>(EnemyTriggered);
         EventManager.Instance.EventBus.Subscribe<Events.NotePressed>(NotePressed);
@@ -40,38 +31,27 @@ public class PlayerAttack : MonoBehaviour
 
         animator.SetBool("Fighting", true);
 
-        GetComponent<PlayerMovement>().enabled = false;
-        GetComponent<PlayerJump>().enabled = false;
+        GameManager.Instance.OpenStaff();
 
-        //GameManager.Instance.OpenStaff();
-        //StartCoroutine(GameManager.Instance.SpawnAttackNotes());
+        PlayerManager.Instance.Fighting = true;
+
+        GameManager.Instance.SpawnInfiniteNotes();
     }
 
     private void NotePressed(Events.NotePressed eventData) {
         animator.SetTrigger("Attack");
 
         bool right = eventData.Value;
-
-        if (right == true) {
-            correct++;
-           
-        }
         
         if (right == false) {
-            wrong++;
-
             if (GameManager.Instance.inTutorial == false) {
-                GetComponent<Player>().Damage();
+                PlayerManager.Instance.Damage();
             }
         }
     }
 
     private void EnemyDied(Events.EnemyDead eventdata) {
         StartCoroutine(CloseStaff());
-
-        GameManager.Instance.totalKills++;
-        kills++;
-        textObject.text = "Kills: " + kills;
     }
 
     private IEnumerator CloseStaff() {
@@ -81,12 +61,7 @@ public class PlayerAttack : MonoBehaviour
 
         enemy = null;
         inFight = false;
-        correct = 0;
-        wrong = 0;
 
         animator.SetBool("Fighting", false);
-
-        GetComponent<PlayerMovement>().enabled = true;
-        GetComponent<PlayerJump>().enabled = true;
     }
 }

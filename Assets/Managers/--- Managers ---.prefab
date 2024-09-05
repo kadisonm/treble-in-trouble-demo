@@ -135,10 +135,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a932742fab3047429f37436f307e0a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerPrefab: {fileID: 7234308643852024864, guid: 9b6bec0942078b346a879804acdcf31a, type: 3}
-  Health: 0
   TotalKills: 0
   Kills: 0
+  PlayerPrefab: {fileID: 7234308643852024864, guid: 9b6bec0942078b346a879804acdcf31a, type: 3}
 --- !u!1 &7031473538456419535
 GameObject:
   m_ObjectHideFlags: 0
@@ -234,3 +233,4 @@ MonoBehaviour:
   inTutorial: 0
   totalKills: 0
   staffPrefab: {fileID: 756385348500648084, guid: 995ab26c28ae9484193831f52705ce1b, type: 3}
+  skeletonPrefab: {fileID: 1011394246065128229, guid: a248f093c82e84c41bce605ddab49e0b, type: 3}

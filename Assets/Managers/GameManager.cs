@@ -25,7 +25,10 @@ public class GameManager : MonoBehaviour
 
     private GameObject staff;
     [SerializeField] private GameObject staffPrefab;
-    [SerializeField] private GameObject enemyPrefab;
+    [SerializeField] private GameObject skeletonPrefab;
+
+    private int minNote = 1;
+    private int maxNote = 1;
 
     public void ChangeScene(string name)
     {
@@ -42,43 +45,18 @@ public class GameManager : MonoBehaviour
     public void OpenStaff() {
         Transform ui = Camera.main.transform.GetChild(0);
         staff = Instantiate(staffPrefab, ui);
+        PlayerManager.Instance.ToggleMovement(false);
     }
 
     public void CloseStaff() {
         Destroy(staff);
         staff = null;
+        PlayerManager.Instance.ToggleMovement(true);
     }
 
-    public IEnumerator SpawnAttackNotes() {
-        if (staff == null) {
-            yield break;
-        }
-
-        int notesSpawned = 0;
-
-        while (notesSpawned < 4) {
-            if (staff == null) {
-                yield break;
-            }
-
-            notesSpawned++;
-            staff.GetComponent<Staff>().CreateRandomNote(1, 15);
-            yield return new WaitForSeconds(2);
-        }
-    }
-
-    public IEnumerator SpawnInfiniteNotes() 
-    {
-        if (staff == null)
-            yield break;
-
-        Staff staffScript = staff.GetComponent<Staff>();
-
-        while (true)
-        {
-            staffScript.CreateRandomNote(1, 15);
-            yield return new WaitForSeconds(2);
-        }
+    public IEnumerator SpawnInfiniteNotes() {
+        Staff staffController = staff.GetComponent<Staff>();
+        StartCoroutine(staffController.SpawnInfiniteNotes(1.5f, minNote, maxNote);
     }
 
     private void Awake() 
@@ -119,7 +97,7 @@ public class GameManager : MonoBehaviour
             spawnPosition = spawn.transform.position;
         }
 
-        GameObject enemy = Instantiate(enemyPrefab, spawnPosition, Quaternion.identity);
+        GameObject enemy = Instantiate(skeletonPrefab, spawnPosition, Quaternion.identity);
     }
 
     private IEnumerator Scene1Dialogue()
@@ -144,7 +122,6 @@ public class GameManager : MonoBehaviour
 
         inTutorial = true;
         OpenStaff();
-        PlayerManager.Instance.ToggleMovement(false);
 
         Staff staffController = staff.GetComponent<Staff>();
         
@@ -185,8 +162,6 @@ public class GameManager : MonoBehaviour
 
         inTutorial = false;
         CloseStaff();
-
-        PlayerManager.Instance.ToggleMovement(true);
 
         yield return new WaitForSecondsRealtime(5);
 

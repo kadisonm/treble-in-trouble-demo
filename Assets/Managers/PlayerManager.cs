@@ -18,6 +18,8 @@ public class PlayerManager : MonoBehaviour
     public int TotalKills;
     public int Kills;
 
+    public bool Fighting = false;
+
     private GameObject Player;
     [SerializeField] private GameObject PlayerPrefab;
 
