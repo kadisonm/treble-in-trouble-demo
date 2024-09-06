@@ -23,6 +23,9 @@ public class DialogueManager : MonoBehaviour
 
     private void Awake() 
     { 
+        if (FindObjectsByType<DialogueManager>(FindObjectsSortMode.None).Length > 1)
+            return;
+
         _instance = this; 
     } 
 

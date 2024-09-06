@@ -54,7 +54,6 @@ public class Enemy : MonoBehaviour
         health--;
 
         animator.SetTrigger("Hit");
-        print("hit");
 
         if (health <= 0) {
             Died();

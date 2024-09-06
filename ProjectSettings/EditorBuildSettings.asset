@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_Scenes/02_Outskirts.unity
     guid: 3f2fcc922c978104396629d8284b81fa
+  - enabled: 1
+    path: Assets/_Scenes/03_Dead.unity
+    guid: 3f61268a8f4a77247899209df9797792
   m_configObjects: {}

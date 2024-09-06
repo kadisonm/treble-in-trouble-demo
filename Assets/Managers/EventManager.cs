@@ -52,6 +52,9 @@ public class EventManager : MonoBehaviour
 
     private void Awake() 
     { 
+        if (FindObjectsByType<EventManager>(FindObjectsSortMode.None).Length > 1)
+            return;
+
         _instance = this; 
         EventBus = new EventBus<IEvent>();
     }

@@ -42,7 +42,6 @@ public class PlayerAttack : MonoBehaviour
 
         if (right) {
             if (enemy) {
-                print("attack");
                 animator.SetTrigger("Attack");
                 enemy.GetComponent<Enemy>().Damage();
             }
@@ -58,12 +57,11 @@ public class PlayerAttack : MonoBehaviour
     private void EnemyDied(Events.EnemyDead eventdata) {
         PlayerManager.Instance.Fighting = false;
 
-        StartCoroutine(CloseStaff());
+        CloseStaff();
     }
 
-    private IEnumerator CloseStaff() {
+    private void CloseStaff() {
         
-        yield return new WaitForSeconds(1);
         GameManager.Instance.CloseStaff();
 
         enemy = null;
