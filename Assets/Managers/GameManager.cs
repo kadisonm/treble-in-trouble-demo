@@ -184,7 +184,7 @@ public class GameManager : MonoBehaviour
             if (wave2_enemies >= 3) {
                 EventManager.Instance.EventBus.Unsubscribe<Events.EnemyDead>(Wave2_onEnemyDead);
 
-                DialogueManager.Instance.CreateSpeech("You", "Phew, I think I'm getting the hang of this.", 4);
+                DialogueManager.Instance.CreateNarration("You have now finished the demo. Thanks for playing.", 60);
             } else {
                 SpawnEnemy();
             }
